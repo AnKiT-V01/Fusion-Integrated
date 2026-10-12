@@ -5,14 +5,7 @@ MODULE = {
     "status": "planned",
 }
 
-NAV_ITEMS = [
-    {"code": "leave.mine", "label": "My Leaves",
-     "icon": "UserCheck", "to": "/leave/mine",
-     "required_permission": "elm.leave.view_self", "sort_order": 10},
-    {"code": "leave.requests", "label": "Leave Requests",
-     "icon": "Users", "to": "/leave/requests",
-     "required_permission": "elm.leave.view", "sort_order": 20},
-]
+NAV_ITEMS = []
 
 PERMISSIONS = [
     ("elm.leave.view_self", "See one's own leave requests"),
@@ -29,6 +22,11 @@ PERMISSIONS = [
 
 SYSTEM_PERMISSIONS = [
     "elm.leave.auto_process",
+]
+
+SCOPE_PERMISSIONS = [
+    "elm.leave.view",
+    "elm.leave.report",
 ]
 
 _EMPLOYEE = [
@@ -57,10 +55,16 @@ _AUTHORITY = [
     "elm.leave.report",
 ]
 
+_DIRECTOR = [
+    *_AUTHORITY,
+    "elm.leave.self_sanction",
+]
+
 ROLE_GRANTS = {
     "employee": _EMPLOYEE,
     "unit_head": _UNIT_HEAD,
     "establishment": _ESTABLISHMENT,
     "sanctioning_authority": _AUTHORITY,
-    "director": _AUTHORITY,
+    "director": _DIRECTOR,
 }
+

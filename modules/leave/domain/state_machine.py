@@ -46,9 +46,11 @@ class Transition:
 
 TRANSITIONS: tuple[Transition, ...] = (
     Transition(DRAFT, AWAITING_SUB, "elm.leave.create",
-               frozenset({EMPLOYEE}), ("has_balance",)),
+               frozenset({EMPLOYEE, SYSTEM}), ("has_balance",)),
+    Transition(DRAFT, UNIT_HEAD, "elm.leave.create",
+               frozenset({EMPLOYEE, SYSTEM}), ("has_balance",)),
     Transition(AWAITING_SUB, UNIT_HEAD, "elm.leave.create",
-               frozenset({SYSTEM}), ("substitute_accepted",)),
+               frozenset({SYSTEM, EMPLOYEE}), ("substitute_accepted",)),
     Transition(AWAITING_SUB, WITHDRAWN, "elm.leave.withdraw",
                frozenset({EMPLOYEE})),
     Transition(UNIT_HEAD, ESTAB, "elm.leave.recommend",

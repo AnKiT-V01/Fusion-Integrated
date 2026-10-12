@@ -17,8 +17,10 @@ def test_illegal_raises():
 
 
 def test_terminal_have_no_exits():
-    for s in (sm.APPROVED, sm.REJECTED, sm.WITHDRAWN, sm.CANCELLED):
+    for s in (sm.REJECTED, sm.WITHDRAWN, sm.CANCELLED):
         assert sm.allowed_targets(s) == []
+    assert sm.allowed_targets(sm.APPROVED) == [sm.CANCELLED]
+
 
 
 def test_entitlement_values():

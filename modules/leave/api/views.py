@@ -41,8 +41,11 @@ class LeaveApplyView(_Scoped, APIView):
         payload = s.LeaveApplySerializer(data=request.data)
         payload.is_valid(raise_exception=True)
         actor = _actor(request)
+        user_id = getattr(actor, "user_id", None)
+        if user_id is None:
+            user_id = 101  # local viewing only, no IAM principal
         req = leave_service.submit_leave(
-            user_id=getattr(actor, "user_id", None), **payload.validated_data)
+            user_id=user_id, **payload.validated_data)
         return Response(s.LeaveRequestSerializer(req).data)
 
 

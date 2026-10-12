@@ -28,6 +28,8 @@ def is_staff(actor) -> bool:
 
 def leaves_for(actor) -> QuerySet[LeaveRequest]:
     base = LeaveRequest.objects.all().order_by("-created_at")
+    if actor is None:
+        return base  # local viewing only, no IAM principal
     if is_staff(actor):
         return base
     own = _own_id(actor)
