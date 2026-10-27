@@ -1,11 +1,51 @@
 """What the server tells the shell about this module."""
 MODULE = {
-    "code": "elm", "label": "Leave", "icon": "Calendar",
-    "base_path": "/leave", "nav_section": "Leave", "sort_order": 20,
-    "status": "planned",
+    "code": "elm",
+    "label": "Leave Management",
+    "icon": "Calendar",
+    "base_path": "/leave",
+    "nav_section": "Services",
+    "sort_order": 20,
+    "status": "ready",
 }
 
-NAV_ITEMS = []
+NAV_ITEMS = [
+    {
+        "code": "leave_overview",
+        "label": "Overview",
+        "to": "/leave",
+        "icon": "Calendar",
+        "required_permission": "elm.leave.view_self",
+    },
+    {
+        "code": "leave_apply",
+        "label": "Apply Leave",
+        "to": "/leave/apply",
+        "icon": "PlusCircle",
+        "required_permission": "elm.leave.create",
+    },
+    {
+        "code": "leave_my_requests",
+        "label": "My Requests",
+        "to": "/leave/my-requests",
+        "icon": "FileText",
+        "required_permission": "elm.leave.view_self",
+    },
+    {
+        "code": "leave_approvals",
+        "label": "Approvals",
+        "to": "/leave/approvals",
+        "icon": "CheckSquare",
+        "required_permission": "elm.leave.recommend",
+    },
+    {
+        "code": "leave_balances",
+        "label": "Leave Balances",
+        "to": "/leave/balances",
+        "icon": "PieChart",
+        "required_permission": "elm.leave.view_self",
+    },
+]
 
 PERMISSIONS = [
     ("elm.leave.view_self", "See one's own leave requests"),
@@ -67,4 +107,3 @@ ROLE_GRANTS = {
     "sanctioning_authority": _AUTHORITY,
     "director": _DIRECTOR,
 }
-

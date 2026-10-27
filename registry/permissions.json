@@ -89,11 +89,47 @@
       "nav": {
         "base_path": "/leave",
         "icon": "Calendar",
-        "items": [],
-        "label": "Leave",
-        "nav_section": "Leave",
+        "items": [
+          {
+            "code": "leave_apply",
+            "icon": "PlusCircle",
+            "label": "Apply Leave",
+            "required_permission": "elm.leave.create",
+            "to": "/leave/apply"
+          },
+          {
+            "code": "leave_approvals",
+            "icon": "CheckSquare",
+            "label": "Approvals",
+            "required_permission": "elm.leave.recommend",
+            "to": "/leave/approvals"
+          },
+          {
+            "code": "leave_balances",
+            "icon": "PieChart",
+            "label": "Leave Balances",
+            "required_permission": "elm.leave.view_self",
+            "to": "/leave/balances"
+          },
+          {
+            "code": "leave_my_requests",
+            "icon": "FileText",
+            "label": "My Requests",
+            "required_permission": "elm.leave.view_self",
+            "to": "/leave/my-requests"
+          },
+          {
+            "code": "leave_overview",
+            "icon": "Calendar",
+            "label": "Overview",
+            "required_permission": "elm.leave.view_self",
+            "to": "/leave"
+          }
+        ],
+        "label": "Leave Management",
+        "nav_section": "Services",
         "sort_order": 20,
-        "status": "planned"
+        "status": "ready"
       },
       "permissions": [
         {

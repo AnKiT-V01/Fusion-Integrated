@@ -1,16 +1,23 @@
 """Role scope for leave. Narrow first, so foreign id is 404."""
 from __future__ import annotations
 
-from django.db.models import QuerySet
+import datetime
 
-from modules.leave.models import LeaveRequest
+from django.db.models import Q, QuerySet
+
+from modules.leave.models import LeaveBalance, LeaveRequest
 
 P_VIEW_ALL = "elm.leave.view"
 P_RECOMMEND = "elm.leave.recommend"
 P_DECIDE = "elm.leave.decide"
 
-STAFF_PERMS = (P_VIEW_ALL, P_RECOMMEND, P_DECIDE,
-               "elm.leave.verify", "elm.leave.report")
+STAFF_PERMS = (
+    P_VIEW_ALL,
+    P_RECOMMEND,
+    P_DECIDE,
+    "elm.leave.verify",
+    "elm.leave.report",
+)
 
 
 def _own_id(actor) -> int | None:
@@ -33,4 +40,12 @@ def leaves_for(actor) -> QuerySet[LeaveRequest]:
     if is_staff(actor):
         return base
     own = _own_id(actor)
-    return base.filter(user_id=own) if own is not None else base.none()
+    if own is None:
+        return base.none()
+    return base.filter(Q(user_id=own) | Q(substitute_user_id=own))
+
+
+def balances_for(user_id: int, year: int | None = None) -> QuerySet[LeaveBalance]:
+    if year is None:
+        year = datetime.date.today().year
+    return LeaveBalance.objects.filter(user_id=user_id, year=year).order_by("category")
