@@ -1,5 +1,89 @@
 {
   "modules": {
+    "department": {
+      "grants": {
+        "department_admin": [
+          "department.announcement.publish",
+          "department.detail.propose",
+          "department.detail.update",
+          "department.feedback.submit",
+          "department.inventory.manage",
+          "department.profile.view",
+          "department.resource.view",
+          "department.timetable.manage"
+        ],
+        "department_head": [
+          "department.detail.propose"
+        ],
+        "faculty": [
+          "department.announcement.publish",
+          "department.feedback.submit",
+          "department.profile.view",
+          "department.resource.view",
+          "department.stock_request.create"
+        ],
+        "student": [
+          "department.feedback.submit",
+          "department.profile.view",
+          "department.resource.view"
+        ]
+      },
+      "module_grants": [
+        "department_admin",
+        "department_head",
+        "faculty",
+        "student"
+      ],
+      "nav": {
+        "base_path": "/department",
+        "icon": "Buildings",
+        "items": [],
+        "label": "Department",
+        "nav_section": "Department",
+        "sort_order": 20,
+        "status": "planned"
+      },
+      "permissions": [
+        {
+          "code": "department.announcement.publish",
+          "label": "Publish announcements"
+        },
+        {
+          "code": "department.inventory.manage",
+          "label": "Insert and track inventory"
+        },
+        {
+          "code": "department.stock_request.create",
+          "label": "Submit stock requests"
+        },
+        {
+          "code": "department.feedback.submit",
+          "label": "Submit confidential feedback"
+        },
+        {
+          "code": "department.profile.view",
+          "label": "View department profiles"
+        },
+        {
+          "code": "department.timetable.manage",
+          "label": "Upload and modify timetables"
+        },
+        {
+          "code": "department.resource.view",
+          "label": "View lab resource profiles"
+        },
+        {
+          "code": "department.detail.update",
+          "label": "Update general department information"
+        },
+        {
+          "code": "department.detail.propose",
+          "label": "Propose official department-detail changes"
+        }
+      ],
+      "scope_permissions": [],
+      "system_permissions": []
+    },
     "directory": {
       "grants": {
         "Dean Academic": [

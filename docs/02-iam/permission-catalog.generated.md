@@ -7,6 +7,20 @@ guards on, and every designation column is one the IAM can grant.
 For the intended taxonomy of modules not yet built, see
 [permission-catalog.md](permission-catalog.md).
 
+## `department`
+
+| Code | What it allows | Held by |
+|---|---|---|
+| `department.announcement.publish` | Publish announcements | `department_admin`, `faculty` |
+| `department.inventory.manage` | Insert and track inventory | `department_admin` |
+| `department.stock_request.create` | Submit stock requests | `faculty` |
+| `department.feedback.submit` | Submit confidential feedback | `department_admin`, `faculty`, `student` |
+| `department.profile.view` | View department profiles | `department_admin`, `faculty`, `student` |
+| `department.timetable.manage` | Upload and modify timetables | `department_admin` |
+| `department.resource.view` | View lab resource profiles | `department_admin`, `faculty`, `student` |
+| `department.detail.update` | Update general department information | `department_admin` |
+| `department.detail.propose` | Propose official department-detail changes | `department_admin`, `department_head` |
+
 ## `directory`
 
 | Code | What it allows | Held by |
